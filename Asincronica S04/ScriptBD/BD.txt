@@ -28,7 +28,7 @@ INSERT INTO Categoria (Nombre) VALUES
 ('Snacks'),
 ('Frappe');
 
--- Insertar Productos de ejemplo
+-- Insertar pedidos de ejemplo
 INSERT INTO Producto (CategoriaId, Nombre, Descripcion, Precio, Imagen, Activo) VALUES
 (1, 'Espresso', 'Cafe fuerte y concentrado', 2.50, 'espresso.jpg', TRUE),
 (2, 'Limonada', 'Refrescante y natural', 3.00, 'limonada.jpg', TRUE),
