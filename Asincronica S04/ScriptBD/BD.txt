@@ -1,0 +1,36 @@
+CREATE DATABASE Cafeteria;
+USE Cafeteria;
+
+-- Tabla de categoria
+CREATE TABLE Categoria (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50) NOT NULL
+);
+
+-- Tabla de pedidos
+CREATE TABLE Producto (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    CategoriaId INT,
+    Nombre VARCHAR(100) NOT NULL,
+    Descripcion TEXT,
+    Precio DECIMAL(10,2) NOT NULL,
+    Imagen VARCHAR(255),
+    FechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Activo BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (CategoriaId) REFERENCES Categoria(Id)
+);
+
+-- Insertar Categorias
+INSERT INTO Categoria (Nombre) VALUES 
+('Cafes'),
+('Bebidas Frias'),
+('Postres'),
+('Snacks'),
+('Frappe');
+
+-- Insertar Productos de ejemplo
+INSERT INTO Producto (CategoriaId, Nombre, Descripcion, Precio, Imagen, Activo) VALUES
+(1, 'Espresso', 'Cafe fuerte y concentrado', 2.50, 'espresso.jpg', TRUE),
+(2, 'Limonada', 'Refrescante y natural', 3.00, 'limonada.jpg', TRUE),
+(3, 'Cheesecake', 'Pastel de queso cremoso', 4.50, 'cheesecake.jpg', TRUE),
+(4, 'Galletas', 'Dulces y crujientes', 2.00, 'galletas.jpg', TRUE);
