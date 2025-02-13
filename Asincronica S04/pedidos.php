@@ -34,7 +34,7 @@ $result = $conn->query($sql);
                     <td><?php echo $pedido['Categoria']; ?></td>
                     <td><?php echo $pedido['Producto']; ?></td>
                     <td><?php echo $pedido['Descripcion']; ?></td>
-                    <td><?php echo number_format($pedido['Precio'], 2); ?> €</td>
+                    <td><?php echo number_format($pedido['Precio'], 2); ?> $</td>
                     <td>
                         <?php if ($pedido['Imagen']): ?>
                             <img src="uploads/<?php echo basename($pedido['Imagen']); ?>" alt="Imagen de <?php echo $pedido['Producto']; ?>" width="100">
