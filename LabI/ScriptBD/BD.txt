@@ -1,0 +1,44 @@
+-- Crear la base de datos
+CREATE DATABASE lab1;
+USE lab1;
+
+-- Tabla de Departamentos
+CREATE TABLE Departamentos (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL
+);
+
+-- Tabla de Municipios
+CREATE TABLE Municipios (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    DepartamentoId INT,
+    FOREIGN KEY (DepartamentoId) REFERENCES Departamentos(Id)
+);
+
+-- Tabla de Distritos
+CREATE TABLE Distritos (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    MunicipioId INT,
+    FOREIGN KEY (MunicipioId) REFERENCES Municipios(Id)
+);
+
+-- Tabla de Usuarios
+CREATE TABLE Usuarios (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombres VARCHAR(100) NOT NULL,
+    Apellidos VARCHAR(100) NOT NULL,
+    Edad INT NOT NULL,
+    Sexo VARCHAR(10) NOT NULL,
+    Correo VARCHAR(100) UNIQUE NOT NULL,
+    Direccion TEXT NOT NULL,
+    DepartamentoId INT,
+    MunicipioId INT,
+    DistritoId INT,
+    FechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Activo BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (DepartamentoId) REFERENCES Departamentos(Id),
+    FOREIGN KEY (MunicipioId) REFERENCES Municipios(Id),
+    FOREIGN KEY (DistritoId) REFERENCES Distritos(Id)
+);
