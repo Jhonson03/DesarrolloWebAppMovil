@@ -1,17 +1,31 @@
+<?php
+require 'conexion.php';
+
+// Consulta para obtener los usuarios
+$sql = "SELECT u.Nombres, u.Apellidos, u.Edad, u.Sexo, u.Correo, 
+               d.Nombre AS Departamento, m.Nombre AS Municipio, di.Nombre AS Distrito, 
+               u.FechaCreacion, u.Activo
+        FROM Usuarios u
+        LEFT JOIN Departamentos d ON u.DepartamentoId = d.Id
+        LEFT JOIN Municipios m ON u.MunicipioId = m.Id
+        LEFT JOIN Distritos di ON u.DistritoId = di.Id";
+
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Usuarios</title>
-    <link rel="stylesheet" href="vistas/styles.css">
-    <link rel="stylesheet" href="vistas/styleMostrar.css">
+    <link rel="stylesheet" href="Styles/styles.css">
+    <link rel="stylesheet" href="Styles/styleMostrar.css">
 </head>
 <body>
-    <!-- Menú de navegación -->
     <nav>
         <ul>
-            <li><a href="index.php">Formulario</a></li>
+            <li><a href="usuarios.php">Formulario</a></li>
             <li><a href="mostrarUsuarios.php">Usuarios Registrados</a></li>
             <li><a href="about.php">Sobre los Desarrolladores</a></li>
         </ul>
@@ -35,19 +49,20 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Aquí se irían llenando los usuarios -->
+                <?php while ($row = $result->fetch_assoc()) { ?>
                 <tr>
-                    <td>Juan</td>
-                    <td>Pérez</td>
-                    <td>30</td>
-                    <td>Masculino</td>
-                    <td>juan@example.com</td>
-                    <td>La Paz</td>
-                    <td>Municipio 1</td>
-                    <td>Distrito A</td>
-                    <td>2025-02-13</td>
-                    <td>Sí</td>
+                    <td><?php echo htmlspecialchars($row['Nombres']); ?></td>
+                    <td><?php echo htmlspecialchars($row['Apellidos']); ?></td>
+                    <td><?php echo htmlspecialchars($row['Edad']); ?></td>
+                    <td><?php echo htmlspecialchars($row['Sexo']); ?></td>
+                    <td><?php echo htmlspecialchars($row['Correo']); ?></td>
+                    <td><?php echo htmlspecialchars($row['Departamento'] ?? 'No Asignado'); ?></td>
+                    <td><?php echo htmlspecialchars($row['Municipio'] ?? 'No Asignado'); ?></td>
+                    <td><?php echo htmlspecialchars($row['Distrito'] ?? 'No Asignado'); ?></td>
+                    <td><?php echo date('d-m-Y', strtotime($row['FechaCreacion'])); ?></td>
+                    <td><?php echo $row['Activo'] ? 'Sí' : 'No'; ?></td>
                 </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>
