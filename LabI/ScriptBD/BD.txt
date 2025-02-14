@@ -42,3 +42,49 @@ CREATE TABLE Usuarios (
     FOREIGN KEY (MunicipioId) REFERENCES Municipios(Id),
     FOREIGN KEY (DistritoId) REFERENCES Distritos(Id)
 );
+
+
+-- Insertar Departamentos
+INSERT INTO Departamentos (Nombre) VALUES ('Chalatenango'), ('San Salvador');
+
+-- Insertar Municipios para Chalatenango
+INSERT INTO Municipios (Nombre, DepartamentoId) VALUES 
+('Chalatenango Norte', 1), 
+('Chalatenango Centro', 1), 
+('Chalatenango Sur', 1);
+
+-- Insertar Municipios para San Salvador
+INSERT INTO Municipios (Nombre, DepartamentoId) VALUES 
+('San Salvador Norte', 2), 
+('San Salvador Centro', 2), 
+('San Salvador Sur', 2);
+
+-- Insertar Distritos para Chalatenango Norte
+INSERT INTO Distritos (Nombre, MunicipioId) VALUES 
+('La Palma', 1), 
+('San Ignacio', 1);
+
+-- Insertar Distritos para Chalatenango Centro
+INSERT INTO Distritos (Nombre, MunicipioId) VALUES 
+('Nueva Concepción', 2), 
+('Tejutla', 2);
+
+-- Insertar Distritos para Chalatenango Sur
+INSERT INTO Distritos (Nombre, MunicipioId) VALUES 
+('Arcatao', 3), 
+('San Isidro Labrador', 3);
+
+-- Insertar Distritos para San Salvador Norte
+INSERT INTO Distritos (Nombre, MunicipioId) VALUES 
+('Aguilares', 4), 
+('Guazapa', 4);
+
+-- Insertar Distritos para San Salvador Centro
+INSERT INTO Distritos (Nombre, MunicipioId) VALUES 
+('Mejicanos', 5), 
+('Ayutuxtepeque', 5);
+
+-- Insertar Distritos para San Salvador Sur
+INSERT INTO Distritos (Nombre, MunicipioId) VALUES 
+('San Marcos', 6), 
+('Santo Tomás', 6);
